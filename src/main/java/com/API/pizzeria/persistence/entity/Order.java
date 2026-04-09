@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pizza_orders")
@@ -37,5 +38,14 @@ public class Order {
     // it can be null sometimes if a client does not specify anything else
     @Column(name = "additional_notes", length = 200)
     private String additionalNotes;
+
+    // Relationships
+    @OneToOne
+    @JoinColumn(name = "customer_id",  insertable = false, updatable = false)
+    private Customer customer;
+
+    // one order can have many orderItems, we create a List to represent the many
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> items;
 
 }

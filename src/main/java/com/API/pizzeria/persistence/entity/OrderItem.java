@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-
+// There's a bug in the relationships in the diagram from PostgreSQL
 @Entity
 @Table(name = "order_items")
 @IdClass(OrderItemId.class)
@@ -34,4 +34,14 @@ public class OrderItem {
     @Column(nullable = false, scale = 5, precision = 2)
     private BigDecimal price;
 
+    // According to the conventions, relationships must be declared at the end
+    @OneToOne // One to one relationship, one orderitem can only contain one pizza
+    @JoinColumn(name = "id_pizza", insertable = false, updatable = false) // Specify which column allows the relation
+    private Pizza pizza;
+
+    // To meet the Single Responsibility Principle, we add insertable and updatable as false
+    // de esa forma a traves de esta relacion no se inserten ni actualizen pizzas
+    @ManyToOne
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    private Order order;
 }
