@@ -27,10 +27,10 @@ public class OrderItem {
     @Column(name = "id_pizza", nullable = false)
     private Integer idPizza;
 
-    @Column(nullable = false, scale = 2, precision = 1)
+    @Column(nullable = false, precision = 2, scale = 1)
     private BigDecimal quantity;
 
-    @Column(nullable = false, scale = 5, precision = 2)
+    @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal price;
 
 }
