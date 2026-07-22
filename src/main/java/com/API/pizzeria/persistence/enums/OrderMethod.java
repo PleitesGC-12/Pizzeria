@@ -1,4 +1,4 @@
-package com.API.pizzeria.persistence.entity;
+package com.API.pizzeria.persistence.enums;
 
 public enum OrderMethod {
     DELIVERY,

@@ -1,5 +1,6 @@
 package com.API.pizzeria.persistence.entity;
 
+import com.API.pizzeria.persistence.enums.OrderMethod;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
