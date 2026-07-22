@@ -16,12 +16,8 @@ import java.math.BigDecimal;
 @Setter
 public class OrderItem {
 
-    @Id
-    @Column(name = "item_id", nullable = false)
-    private Integer itemId;
-
-    @Column(name = "order_id", nullable = false)
-    private Integer orderId;
+    @EmbeddedId             // alerts jpa this a composite PK and it is defined inside OrderItemId
+    private OrderItemId itemId;
 
     @Column(name = "id_pizza", nullable = false)
     private Integer idPizza;
