@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "order_items")
+@IdClass(OrderItemId.class)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -32,5 +33,14 @@ public class OrderItem {
 
     @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal price;
+
+    // Relationships
+    @ManyToOne
+    @JoinColumn(name = "id_pizza", insertable = false, updatable = false)
+    private Pizza pizza;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+    private Order order;
 
 }

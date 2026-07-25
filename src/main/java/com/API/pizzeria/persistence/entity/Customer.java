@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customers")
 @NoArgsConstructor
@@ -30,4 +32,7 @@ public class Customer {
 
     @Column(name = "phone_number" , length = 20)
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> pizzaOrders;
 }

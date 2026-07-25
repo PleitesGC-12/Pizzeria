@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "pizzas")
@@ -38,4 +39,7 @@ public class Pizza {
 
     @Column(nullable = false)
     private Boolean available;
+
+    @OneToMany(mappedBy = "pizza")
+    private List<OrderItem> orderItems;
 }
