@@ -27,13 +27,7 @@ public class PizzaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getByid(@PathVariable Integer id) {
-        PizzaResponseDTO pizzaDTO = pizzaService.getById(id);
-
-        if (pizzaDTO == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("The movie with the id: " + id + " was not found");
-        }
-
-        return ResponseEntity.ok(pizzaDTO);
+    public ResponseEntity<PizzaResponseDTO> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(pizzaService.getById(id));
     }
 }
