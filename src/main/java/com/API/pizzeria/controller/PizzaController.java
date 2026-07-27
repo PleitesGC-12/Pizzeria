@@ -1,13 +1,10 @@
 package com.API.pizzeria.controller;
 
-import com.API.pizzeria.DTO.PizzaResponseDTO;
+import com.API.pizzeria.DTO.PizzaDTO;
 import com.API.pizzeria.service.PizzaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,12 +19,17 @@ public class PizzaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PizzaResponseDTO>> getAll() {
+    public ResponseEntity<List<PizzaDTO>> getAll() {
         return ResponseEntity.ok(pizzaService.getAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PizzaResponseDTO> getById(@PathVariable Integer id) {
+    public ResponseEntity<PizzaDTO> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(pizzaService.getById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<PizzaDTO> postPizza(@RequestBody PizzaDTO pizzaRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(pizzaService.save(pizzaRequestDTO));
     }
 }

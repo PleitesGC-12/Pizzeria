@@ -1,11 +1,14 @@
 package com.API.pizzeria.service;
 
-import com.API.pizzeria.DTO.PizzaResponseDTO;
+import com.API.pizzeria.DTO.PizzaDTO;
 
 import java.util.List;
 
 public interface PizzaService {
 
-    List<PizzaResponseDTO> getAll();
-    PizzaResponseDTO getById(Integer id);
+    List<PizzaDTO> getAll();
+
+    PizzaDTO getById(Integer id);
+
+    PizzaDTO save(PizzaDTO pizzaRequestDTO);
 }

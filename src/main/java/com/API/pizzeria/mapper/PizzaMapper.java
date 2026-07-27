@@ -1,7 +1,8 @@
 package com.API.pizzeria.mapper;
 
-import com.API.pizzeria.DTO.PizzaResponseDTO;
+import com.API.pizzeria.DTO.PizzaDTO;
 import com.API.pizzeria.persistence.entity.Pizza;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -10,8 +11,11 @@ import java.util.List;
 public interface PizzaMapper {
 
     // Converts a list of pizzas into a list of DTO
-    List<PizzaResponseDTO> toDto(List<Pizza> pizzas);
+    List<PizzaDTO> toDto(List<Pizza> pizzas);
 
     // Converts a a single pizza to a pizza DTO
-    PizzaResponseDTO toDto(Pizza pizza);
+    PizzaDTO toDto(Pizza pizza);
+
+    @InheritInverseConfiguration
+    Pizza toEntity(PizzaDTO pizzaRequestDTO);
 }
