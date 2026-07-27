@@ -1,6 +1,7 @@
 package com.API.pizzeria.service;
 
 import com.API.pizzeria.DTO.PizzaDTO;
+import com.API.pizzeria.DTO.UpdatePizzaDTO;
 import com.API.pizzeria.exception.PizzaDoesNotExistException;
 import com.API.pizzeria.mapper.PizzaMapper;
 import com.API.pizzeria.persistence.entity.Pizza;
@@ -38,6 +39,20 @@ public class PizzaServiceImpl implements PizzaService {
     @Override
     public PizzaDTO save(PizzaDTO pizzaRequestDTO) {
         Pizza pizza = pizzaMapper.toEntity(pizzaRequestDTO);
+        return pizzaMapper.toDto(pizzaRepository.save(pizza));
+    }
+
+    @Override
+    public PizzaDTO update(Integer id, UpdatePizzaDTO updateDTO) {
+        Pizza pizza = pizzaRepository.findById(id).orElse(null);
+
+        if (pizza == null) throw new PizzaDoesNotExistException(id);
+
+        pizza.setName(updateDTO.name());
+        pizza.setDescription(updateDTO.description());
+        pizza.setVegetarian(updateDTO.vegetarian());
+        pizza.setVegan(updateDTO.vegan());
+
         return pizzaMapper.toDto(pizzaRepository.save(pizza));
     }
 }
