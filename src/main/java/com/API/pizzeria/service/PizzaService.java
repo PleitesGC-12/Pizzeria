@@ -14,4 +14,6 @@ public interface PizzaService {
     PizzaDTO save(PizzaDTO pizzaRequestDTO);
 
     PizzaDTO update(Integer id, UpdatePizzaDTO updateDTO);
+
+    void delete(Integer id);
 }

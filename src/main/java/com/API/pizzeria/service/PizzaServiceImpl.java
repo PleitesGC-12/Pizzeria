@@ -55,4 +55,12 @@ public class PizzaServiceImpl implements PizzaService {
 
         return pizzaMapper.toDto(pizzaRepository.save(pizza));
     }
+
+    @Override
+    public void delete(Integer id) {
+        if (!pizzaRepository.existsById(id)) {
+            throw new PizzaDoesNotExistException(id);
+        }
+        pizzaRepository.deleteById(id);
+    }
 }

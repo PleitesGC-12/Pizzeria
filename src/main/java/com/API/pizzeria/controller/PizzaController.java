@@ -38,4 +38,10 @@ public class PizzaController {
     public ResponseEntity<PizzaDTO> putPizza(@PathVariable Integer id, @RequestBody UpdatePizzaDTO updatePizza) {
         return ResponseEntity.ok(pizzaService.update(id, updatePizza));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePizza(@PathVariable Integer id) {
+        pizzaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
