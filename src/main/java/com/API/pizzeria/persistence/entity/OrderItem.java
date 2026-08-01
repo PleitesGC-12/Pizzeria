@@ -35,12 +35,10 @@ public class OrderItem {
     private BigDecimal price;
 
     // According to the conventions, relationships must be declared at the end
-    @OneToOne // One to one relationship, one orderitem can only contain one pizza
-    @JoinColumn(name = "id_pizza", insertable = false, updatable = false) // Specify which column allows the relation
+    @ManyToOne
+    @JoinColumn(name = "id_pizza", insertable = false, updatable = false)
     private Pizza pizza;
 
-    // To meet the Single Responsibility Principle, we add insertable and updatable as false
-    // de esa forma a traves de esta relacion no se inserten ni actualizen pizzas
     @ManyToOne
     @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private Order order;

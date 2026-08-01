@@ -41,7 +41,7 @@ public class Order {
     private String additionalNotes;
 
     // Relationships
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "customer_id",  insertable = false, updatable = false)
     private Customer customer;
 
