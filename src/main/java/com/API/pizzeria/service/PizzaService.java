@@ -1,7 +1,7 @@
 package com.API.pizzeria.service;
 
-import com.API.pizzeria.DTO.PizzaDTO;
-import com.API.pizzeria.DTO.UpdatePizzaDTO;
+import com.API.pizzeria.DTO.pizzas.PizzaDTO;
+import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
 
 import java.util.List;
 

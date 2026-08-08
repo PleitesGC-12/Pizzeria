@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-// There's a bug in the relationships in the diagram from PostgreSQL
+
 @Entity
 @Table(name = "order_items")
 @IdClass(OrderItemId.class)

@@ -1,6 +1,6 @@
-package com.API.pizzeria.mapper;
+package com.API.pizzeria.mapper.pizzas;
 
-import com.API.pizzeria.DTO.PizzaDTO;
+import com.API.pizzeria.DTO.pizzas.PizzaDTO;
 import com.API.pizzeria.persistence.entity.Pizza;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

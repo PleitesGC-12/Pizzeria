@@ -1,9 +1,9 @@
 package com.API.pizzeria.service;
 
-import com.API.pizzeria.DTO.PizzaDTO;
-import com.API.pizzeria.DTO.UpdatePizzaDTO;
+import com.API.pizzeria.DTO.pizzas.PizzaDTO;
+import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
 import com.API.pizzeria.exception.PizzaDoesNotExistException;
-import com.API.pizzeria.mapper.PizzaMapper;
+import com.API.pizzeria.mapper.pizzas.PizzaMapper;
 import com.API.pizzeria.persistence.entity.Pizza;
 import com.API.pizzeria.repository.PizzaRepository;
 import org.springframework.stereotype.Service;

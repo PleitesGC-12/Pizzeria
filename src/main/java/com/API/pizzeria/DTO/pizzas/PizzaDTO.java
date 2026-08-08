@@ -1,4 +1,4 @@
-package com.API.pizzeria.DTO;
+package com.API.pizzeria.DTO.pizzas;
 
 import java.math.BigDecimal;
 

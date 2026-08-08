@@ -1,7 +1,7 @@
 package com.API.pizzeria.controller;
 
-import com.API.pizzeria.DTO.PizzaDTO;
-import com.API.pizzeria.DTO.UpdatePizzaDTO;
+import com.API.pizzeria.DTO.pizzas.PizzaDTO;
+import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
 import com.API.pizzeria.service.PizzaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
