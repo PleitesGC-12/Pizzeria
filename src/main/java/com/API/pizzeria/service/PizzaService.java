@@ -11,6 +11,10 @@ public interface PizzaService {
 
     PizzaDTO getById(Integer id);
 
+    List<PizzaDTO> getAvailable();
+
+    PizzaDTO getByName(String name);
+
     PizzaDTO save(PizzaDTO pizzaRequestDTO);
 
     PizzaDTO put(Integer id, UpdatePizzaDTO updateDTO);

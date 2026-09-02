@@ -3,6 +3,7 @@ package com.API.pizzeria.service;
 import com.API.pizzeria.DTO.pizzas.PizzaDTO;
 import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
 import com.API.pizzeria.exception.PizzaDoesNotExistException;
+import com.API.pizzeria.exception.PizzaNotFoundByNameException;
 import com.API.pizzeria.mapper.pizzas.PizzaMapper;
 import com.API.pizzeria.persistence.entity.Pizza;
 import com.API.pizzeria.repository.PizzaRepository;
@@ -36,6 +37,24 @@ public class PizzaServiceImpl implements PizzaService {
         }
 
         return pizzaMapper.toDto(pizza);
+    }
+
+    @Override
+    public List<PizzaDTO> getAvailable() {
+        return pizzaMapper.toDto(pizzaRepository.findAllByAvailableTrueOrderByPrice());
+    }
+
+    @Override
+    public PizzaDTO getByName(String name) {
+
+        Pizza pizza = pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(name);
+
+        if (pizza == null) {
+            throw new PizzaNotFoundByNameException(name);
+        }
+
+        return pizzaMapper.toDto(pizza);
+
     }
 
     @Override

@@ -20,4 +20,10 @@ public class RestExceptionHandler {
         ErrorDTO error = new ErrorDTO ("Order not found", ode.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
+
+    @ExceptionHandler(PizzaNotFoundByNameException.class)
+    public ResponseEntity<ErrorDTO> handleException(PizzaNotFoundByNameException pnfe) {
+        ErrorDTO error = new ErrorDTO("Pizza-not-found-by-name", pnfe.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
 }
