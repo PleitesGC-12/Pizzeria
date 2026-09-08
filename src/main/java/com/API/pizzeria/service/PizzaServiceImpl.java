@@ -2,6 +2,7 @@ package com.API.pizzeria.service;
 
 import com.API.pizzeria.DTO.pizzas.PizzaDTO;
 import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
+import com.API.pizzeria.exception.IngredientNotFoundException;
 import com.API.pizzeria.exception.PizzaDoesNotExistException;
 import com.API.pizzeria.exception.PizzaNotFoundByNameException;
 import com.API.pizzeria.mapper.pizzas.PizzaMapper;
@@ -55,6 +56,24 @@ public class PizzaServiceImpl implements PizzaService {
 
         return pizzaMapper.toDto(pizza);
 
+    }
+
+    @Override
+    public List<PizzaDTO> getWith(String ingredient) {
+
+        List<Pizza> ingredients = pizzaRepository.findAllByAvailableTrueAndDescriptionContainingIgnoreCase(ingredient);
+
+        if (ingredients.isEmpty()) {
+            throw new IngredientNotFoundException(ingredient);
+        }
+
+        return pizzaMapper.toDto(ingredients);
+    }
+
+    @Override
+    public List<PizzaDTO> getWithout(String ingredient) {
+        List<Pizza> ingredients = pizzaRepository.findAllByAvailableTrueAndDescriptionNotContainingIgnoreCase(ingredient);
+        return pizzaMapper.toDto(ingredients);
     }
 
     @Override

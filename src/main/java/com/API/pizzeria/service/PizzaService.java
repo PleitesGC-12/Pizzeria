@@ -15,6 +15,10 @@ public interface PizzaService {
 
     PizzaDTO getByName(String name);
 
+    List<PizzaDTO> getWith(String ingredient);
+
+    List<PizzaDTO> getWithout(String ingredient);
+
     PizzaDTO save(PizzaDTO pizzaRequestDTO);
 
     PizzaDTO put(Integer id, UpdatePizzaDTO updateDTO);
