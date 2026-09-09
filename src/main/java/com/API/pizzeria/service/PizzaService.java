@@ -3,6 +3,7 @@ package com.API.pizzeria.service;
 import com.API.pizzeria.DTO.pizzas.PizzaDTO;
 import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface PizzaService {
@@ -18,6 +19,8 @@ public interface PizzaService {
     List<PizzaDTO> getWith(String ingredient);
 
     List<PizzaDTO> getWithout(String ingredient);
+
+    List<PizzaDTO> getCheapest(BigDecimal price);
 
     PizzaDTO save(PizzaDTO pizzaRequestDTO);
 

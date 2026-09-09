@@ -10,6 +10,7 @@ import com.API.pizzeria.persistence.entity.Pizza;
 import com.API.pizzeria.repository.PizzaRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -71,6 +72,11 @@ public class PizzaServiceImpl implements PizzaService {
     public List<PizzaDTO> getWithout(String ingredient) {
         List<Pizza> ingredients = pizzaRepository.findAllByAvailableTrueAndDescriptionNotContainingIgnoreCase(ingredient);
         return pizzaMapper.toDto(ingredients);
+    }
+
+    @Override
+    public List<PizzaDTO> getCheapest(BigDecimal price) {
+        return pizzaMapper.toDto(pizzaRepository.findTop3ByAvailableTrueAndPriceLessThanEqual(price));
     }
 
     @Override

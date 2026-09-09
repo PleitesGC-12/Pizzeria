@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -47,6 +48,11 @@ public class PizzaController {
     @GetMapping("/without/{ingredient}")
     public ResponseEntity<List<PizzaDTO>> getWithout(@PathVariable String ingredient) {
         return ResponseEntity.ok(pizzaService.getWithout(ingredient));
+    }
+
+    @GetMapping("/cheapest/{price}")
+    public ResponseEntity<List<PizzaDTO>> getCheapest(@PathVariable BigDecimal price) {
+        return ResponseEntity.ok(pizzaService.getCheapest(price));
     }
 
     @PostMapping
