@@ -30,4 +30,14 @@ public class OrderController {
     public ResponseEntity<OrderDetailDTO> getById(@PathVariable Integer id) {
         return ResponseEntity.ok(orderService.getById(id));
     }
+
+    @GetMapping("/today")
+    public ResponseEntity<List<OrderDTO>> getTodayOrders() {
+        return ResponseEntity.ok(orderService.getTodayOrders());
+    }
+
+    @GetMapping("/outside")
+    public ResponseEntity<List<OrderDTO>> getDeliveryAndPickupOrders() {
+        return ResponseEntity.ok(orderService.getDeliveryAndPickupOrders());
+    }
 }

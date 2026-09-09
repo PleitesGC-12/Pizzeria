@@ -10,4 +10,8 @@ public interface OrderService {
     List<OrderDTO> getAll();
 
     OrderDetailDTO getById(Integer id);
+
+    List<OrderDTO> getTodayOrders();
+
+    List<OrderDTO> getDeliveryAndPickupOrders();
 }

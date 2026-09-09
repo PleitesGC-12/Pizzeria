@@ -6,9 +6,12 @@ import com.API.pizzeria.exception.OrderDoesNotExistException;
 import com.API.pizzeria.mapper.orders.OrderDetailMapper;
 import com.API.pizzeria.mapper.orders.OrderMapper;
 import com.API.pizzeria.persistence.entity.Order;
+import com.API.pizzeria.persistence.enums.OrderMethod;
 import com.API.pizzeria.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -38,4 +41,15 @@ public class OrderServiceImpl implements OrderService {
         return orderDetailMapper.toDetailDto(order);
     }
 
+    @Override
+    public List<OrderDTO> getTodayOrders() {
+        LocalDateTime today = LocalDate.now().atTime(0, 0);
+        return orderMapper.toDto(orderRepository.findAllByDateAfter(today));
+    }
+
+    @Override
+    public List<OrderDTO> getDeliveryAndPickupOrders() {
+        List<OrderMethod> orderMethods = List.of(OrderMethod.DELIVERY, OrderMethod.PICKUP);
+        return orderMapper.toDto(orderRepository.findAllByOrderMethodIn(orderMethods));
+    }
 }
