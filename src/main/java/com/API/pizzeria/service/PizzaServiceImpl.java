@@ -48,14 +48,11 @@ public class PizzaServiceImpl implements PizzaService {
     @Override
     public PizzaDTO getByName(String name) {
 
-        Pizza pizza = pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(name);
-
-        if (pizza == null) {
-            throw new PizzaNotFoundByNameException(name);
-        }
+        Pizza pizza = pizzaRepository
+                .findAllByAvailableTrueAndNameIgnoreCase(name)
+                .orElseThrow(() -> new PizzaNotFoundByNameException(name));
 
         return pizzaMapper.toDto(pizza);
-
     }
 
     @Override
