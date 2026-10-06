@@ -3,6 +3,9 @@ package com.API.pizzeria.controller;
 import com.API.pizzeria.DTO.pizzas.PizzaDTO;
 import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
 import com.API.pizzeria.service.PizzaService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +24,9 @@ public class PizzaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PizzaDTO>> getAll() {
-        return ResponseEntity.ok(pizzaService.getAll());
+    public ResponseEntity<Page<PizzaDTO>> getAll(
+            @PageableDefault(size = 8, sort="name") Pageable pageable) {
+        return ResponseEntity.ok(pizzaService.getAll(pageable));
     }
 
     @GetMapping("/{id}")

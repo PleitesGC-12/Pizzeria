@@ -7,7 +7,10 @@ import com.API.pizzeria.exception.PizzaDoesNotExistException;
 import com.API.pizzeria.exception.PizzaNotFoundByNameException;
 import com.API.pizzeria.mapper.pizzas.PizzaMapper;
 import com.API.pizzeria.persistence.entity.Pizza;
+import com.API.pizzeria.repository.PizzaPagSortRepository;
 import com.API.pizzeria.repository.PizzaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -18,15 +21,18 @@ public class PizzaServiceImpl implements PizzaService {
 
     private final PizzaRepository pizzaRepository;
     private final PizzaMapper pizzaMapper;
+    private final PizzaPagSortRepository pizzaPag;
 
-    public PizzaServiceImpl(PizzaRepository pizzaRepository, PizzaMapper pizzaMapper) {
+    public PizzaServiceImpl(PizzaRepository pizzaRepository, PizzaMapper pizzaMapper, PizzaPagSortRepository pizzaPag) {
         this.pizzaRepository = pizzaRepository;
         this.pizzaMapper = pizzaMapper;
+        this.pizzaPag = pizzaPag;
     }
 
     @Override
-    public List<PizzaDTO> getAll() {
-        return pizzaMapper.toDto(pizzaRepository.findAll());
+    public Page<PizzaDTO> getAll(Pageable pageable) {
+        Page<Pizza> pizzaPage = pizzaPag.findAll(pageable);
+        return pizzaPage.map(pizzaMapper::toDto);
     }
 
     @Override

@@ -2,13 +2,15 @@ package com.API.pizzeria.service;
 
 import com.API.pizzeria.DTO.pizzas.PizzaDTO;
 import com.API.pizzeria.DTO.pizzas.UpdatePizzaDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public interface PizzaService {
 
-    List<PizzaDTO> getAll();
+    Page<PizzaDTO> getAll(Pageable pageable );
 
     PizzaDTO getById(Integer id);
 
