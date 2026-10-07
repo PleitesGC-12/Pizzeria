@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PizzaService {
 
-    Page<PizzaDTO> getAll(Pageable pageable );
+    Page<PizzaDTO> getAll(int pageNumber, int pageSize );
 
     PizzaDTO getById(Integer id);
 

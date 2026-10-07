@@ -25,8 +25,9 @@ public class PizzaController {
 
     @GetMapping
     public ResponseEntity<Page<PizzaDTO>> getAll(
-            @PageableDefault(size = 8, sort="name") Pageable pageable) {
-        return ResponseEntity.ok(pizzaService.getAll(pageable));
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(pizzaService.getAll(page, size));
     }
 
     @GetMapping("/{id}")

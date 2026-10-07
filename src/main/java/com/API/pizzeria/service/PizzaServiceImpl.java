@@ -10,7 +10,9 @@ import com.API.pizzeria.persistence.entity.Pizza;
 import com.API.pizzeria.repository.PizzaPagSortRepository;
 import com.API.pizzeria.repository.PizzaRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -30,8 +32,9 @@ public class PizzaServiceImpl implements PizzaService {
     }
 
     @Override
-    public Page<PizzaDTO> getAll(Pageable pageable) {
-        Page<Pizza> pizzaPage = pizzaPag.findAll(pageable);
+    public Page<PizzaDTO> getAll(int pageNumber, int pageSize) {
+        Pageable pageRequest = PageRequest.of(pageNumber, pageSize, Sort.by("name"));
+        Page<Pizza> pizzaPage = pizzaPag.findAll(pageRequest);
         return pizzaPage.map(pizzaMapper::toDto);
     }
 
